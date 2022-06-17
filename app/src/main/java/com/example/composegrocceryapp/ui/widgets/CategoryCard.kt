@@ -13,14 +13,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.Height
-import com.example.composegrocceryapp.data.categoryList
+import com.example.composegrocceryapp.db.categoryList
 import com.example.composegrocceryapp.model.Category
 
 @Composable

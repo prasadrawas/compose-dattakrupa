@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import com.example.composegrocceryapp.components.Height
 import com.example.composegrocceryapp.components.ReactiveAppbar
 import com.example.composegrocceryapp.components.ReactiveButton
-import com.example.composegrocceryapp.data.productList
+import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.ui.theme.Green200
 import com.example.composegrocceryapp.ui.widgets.BoldText
 import com.example.composegrocceryapp.ui.widgets.ProductImage

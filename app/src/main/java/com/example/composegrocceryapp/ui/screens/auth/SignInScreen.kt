@@ -67,7 +67,7 @@ fun SignInScreen(
             )
             ForgotPassBox(navigator = navigator)
             ReactiveButton(title = stringResource(id = R.string.sign_in)) {
-
+                navigator.navigate(AppScreens.Home.name)
             }
             SignUpBox(navigator = navigator)
         }

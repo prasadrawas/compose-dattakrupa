@@ -8,6 +8,6 @@ data class Order (
     var id: String? = null,
     var date: String? = toDateFormat(Date()),
     var time: String? = toTimeFormat(Date()),
-    var userInfo: User? = null,
+    var customerInfo: Customer? = null,
     var items: List<OrderItem>? = null
 )

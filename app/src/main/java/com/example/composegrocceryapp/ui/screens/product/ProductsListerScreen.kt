@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.composegrocceryapp.components.ReactiveAppbar
-import com.example.composegrocceryapp.data.productList
+import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.ui.widgets.ProductCard
 
 @ExperimentalFoundationApi

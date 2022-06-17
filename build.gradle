@@ -6,7 +6,7 @@ buildscript {
         hilt_version = '2.38.1'
         gson_version = '2.9.0'
         retrofit_version = '2.9.0'
-        room_version = '2.3.0'
+        roomVersion = "2.4.2"
         nav_version = '2.4.2'
     }
     repositories {

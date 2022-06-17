@@ -6,7 +6,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import com.example.composegrocceryapp.components.ReactiveAppbar
-import com.example.composegrocceryapp.data.ordersList
+import com.example.composegrocceryapp.db.ordersList
 import com.example.composegrocceryapp.ui.widgets.OrderCard
 
 @Composable

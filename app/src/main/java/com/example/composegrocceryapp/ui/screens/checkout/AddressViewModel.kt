@@ -13,5 +13,5 @@ class AddressViewModel @Inject constructor(): ViewModel() {
     val phone: MutableState<String> = mutableStateOf("")
     val city: MutableState<String> = mutableStateOf("")
     val pinCode: MutableState<String> = mutableStateOf("")
-    val fullAddress: MutableState<String> = mutableStateOf("")
+    val landmark: MutableState<String> = mutableStateOf("")
 }

@@ -22,9 +22,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.ReactiveAppbar
 import com.example.composegrocceryapp.components.Width
-import com.example.composegrocceryapp.data.categoryList
+import com.example.composegrocceryapp.db.categoryList
 import com.example.composegrocceryapp.model.Category
-import com.example.composegrocceryapp.model.Product
 
 @ExperimentalFoundationApi
 @Composable

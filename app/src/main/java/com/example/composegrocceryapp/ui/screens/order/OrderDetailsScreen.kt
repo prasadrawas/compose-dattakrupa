@@ -3,13 +3,9 @@ package com.example.composegrocceryapp.ui.screens.order
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,15 +20,12 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.ReactiveAppbar
 import com.example.composegrocceryapp.components.Width
-import com.example.composegrocceryapp.data.ordersList
-import com.example.composegrocceryapp.data.productList
-import com.example.composegrocceryapp.model.Order
+import com.example.composegrocceryapp.db.ordersList
+import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.model.Product
 import com.example.composegrocceryapp.ui.theme.Green200
-import com.example.composegrocceryapp.ui.theme.Green500
 import com.example.composegrocceryapp.ui.widgets.BoldText
 import com.example.composegrocceryapp.ui.widgets.CustomDetailsSection
-import com.example.composegrocceryapp.ui.widgets.OrderCard
 import com.example.composegrocceryapp.ui.widgets.ScreenTitle
 
 @Composable

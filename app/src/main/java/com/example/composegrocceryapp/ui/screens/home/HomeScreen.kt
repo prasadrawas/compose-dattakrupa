@@ -27,8 +27,8 @@ import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.Height
 import com.example.composegrocceryapp.components.InputField
 import com.example.composegrocceryapp.components.ReactiveAppbar
-import com.example.composegrocceryapp.data.categoryList
-import com.example.composegrocceryapp.data.productList
+import com.example.composegrocceryapp.db.categoryList
+import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.ui.theme.Green200
 import com.example.composegrocceryapp.ui.widgets.CategoryCard
 import com.example.composegrocceryapp.ui.widgets.ProductCard

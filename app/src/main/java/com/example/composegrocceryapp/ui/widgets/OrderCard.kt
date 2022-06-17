@@ -45,15 +45,15 @@ fun OrderCard(order: Order) {
             Width(width = 20)
             Column {
                 Text(
-                    text = order.userInfo?.name!!, style = TextStyle(
+                    text = order.customerInfo?.name!!, style = TextStyle(
                         fontFamily = FontFamily(Font(R.font.poppins_bold)),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium
                     )
                 )
 
-                IconText(icon = Icons.Rounded.Phone, text = order.userInfo?.phone!!)
-                IconText(icon = Icons.Rounded.Email, text = order.userInfo?.email!!)
+                IconText(icon = Icons.Rounded.Phone, text = order.customerInfo?.phone!!)
+                IconText(icon = Icons.Rounded.Email, text = order.customerInfo?.email!!)
 
 
                 Text(

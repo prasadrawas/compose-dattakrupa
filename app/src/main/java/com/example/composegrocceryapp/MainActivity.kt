@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.ExperimentalComposeUiApi
-import com.example.composegrocceryapp.navigation.user.UserAppNavigation
+import com.example.composegrocceryapp.navigation.AppNavigation
 import com.example.composegrocceryapp.ui.theme.ComposeGrocceryAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeGrocceryAppTheme {
-                UserAppNavigation()
+                AppNavigation()
             }
         }
     }
