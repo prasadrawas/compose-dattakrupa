@@ -21,6 +21,21 @@ android {
         }
     }
 
+    flavorDimensions "dev"
+    productFlavors {
+       associates {
+            dimension = "dev"
+            applicationIdSuffix = ".associates"
+            versionNameSuffix = "-associates"
+        }
+        customers {
+            dimension = "dev"
+            applicationIdSuffix = ".customers"
+            versionNameSuffix = "-customers"
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -54,7 +69,7 @@ apply plugin: 'com.google.gms.google-services'
 dependencies {
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.9'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
 
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-rc02"
