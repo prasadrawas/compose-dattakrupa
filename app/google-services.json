@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "891374277948",
+    "firebase_url": "https://dattakrupa-store-default-rtdb.firebaseio.com",
+    "project_id": "dattakrupa-store",
+    "storage_bucket": "dattakrupa-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891374277948:android:47a993004ff2b9b353ba39",
+        "android_client_info": {
+          "package_name": "com.admin.online_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChNtl_HUXWIy5okWbfQX31tyu8WFZ0Nuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891374277948:android:16a62160d566f1f953ba39",
+        "android_client_info": {
+          "package_name": "com.example.composegrocceryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChNtl_HUXWIy5okWbfQX31tyu8WFZ0Nuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891374277948:android:be367d393e19534353ba39",
+        "android_client_info": {
+          "package_name": "com.example.grocatdoor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChNtl_HUXWIy5okWbfQX31tyu8WFZ0Nuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891374277948:android:3f5e4514e8025ab253ba39",
+        "android_client_info": {
+          "package_name": "com.online_store.online_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChNtl_HUXWIy5okWbfQX31tyu8WFZ0Nuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891374277948-hmim20aoafjnhlq8nbbueqpl1j9imraf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
