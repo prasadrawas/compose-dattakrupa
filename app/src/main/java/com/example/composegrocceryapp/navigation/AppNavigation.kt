@@ -41,7 +41,7 @@ import com.example.composegrocceryapp.ui.screens.splash.SplashScreen
 @Composable
 fun AppNavigation(){
     val navigator = rememberNavController()
-    NavHost(navController = navigator, startDestination = AppScreens.ProductsLister.name){
+    NavHost(navController = navigator, startDestination = AppScreens.Splash.name){
 
         composable(AppScreens.Splash.name){
             SplashScreen(navigator = navigator)

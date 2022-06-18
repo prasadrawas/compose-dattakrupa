@@ -25,13 +25,14 @@ import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.Height
 import com.example.composegrocceryapp.components.InputField
 import com.example.composegrocceryapp.components.ReactiveButton
+import com.example.composegrocceryapp.constants.INVALID_EMAIL
+import com.example.composegrocceryapp.constants.WEAK_PASSWORD
 import com.example.composegrocceryapp.navigation.AppScreens
 import com.example.composegrocceryapp.ui.widgets.ScreenTitle
 import com.example.composegrocceryapp.utils.isStrongPassword
 import com.example.composegrocceryapp.utils.isValidEmail
 
 @ExperimentalComposeUiApi
-//@Preview
 @Composable
 fun SignInScreen(
     navigator: NavController,
@@ -54,7 +55,7 @@ fun SignInScreen(
                 leadingIcon = Icons.Default.Email,
                 keyboardType = KeyboardType.Email,
                 validator = ::isValidEmail,
-                isValid = viewModel.isValid
+                errorMsg = viewModel.emailErrorMsg
             )
 
             InputField(
@@ -62,12 +63,12 @@ fun SignInScreen(
                 placeholder = "Enter password",
                 leadingIcon = Icons.Default.Lock,
                 validator = ::isStrongPassword,
-                isValid = viewModel.isValid,
-                obscureText = true
+                obscureText = true,
+                errorMsg = viewModel.passwordErrorMsg
             )
             ForgotPassBox(navigator = navigator)
-            ReactiveButton(title = stringResource(id = R.string.sign_in)) {
-                navigator.navigate(AppScreens.Home.name)
+            ReactiveButton(title = stringResource(id = R.string.sign_in), isLoading = viewModel.isLoading) {
+                viewModel.isFormValid()
             }
             SignUpBox(navigator = navigator)
         }

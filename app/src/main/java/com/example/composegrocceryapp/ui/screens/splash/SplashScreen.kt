@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -29,10 +28,8 @@ import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.navigation.AppScreens
 import kotlinx.coroutines.delay
 
-@Preview
 @Composable
 fun SplashScreen(navigator: NavController? = null) {
-
     val scale = remember {
         Animatable(0f)
     }
@@ -48,7 +45,7 @@ fun SplashScreen(navigator: NavController? = null) {
                 }
             )
         )
-        delay(1500L)
+        delay(1000L)
         navigator?.navigate(AppScreens.SignIn.name)
     })
 

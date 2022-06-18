@@ -21,6 +21,21 @@ android {
         }
     }
 
+    flavorDimensions "dev"
+    productFlavors {
+       associates {
+            dimension = "dev"
+            applicationIdSuffix = ".associates"
+            versionNameSuffix = "-associates"
+        }
+        customers {
+            dimension = "dev"
+            applicationIdSuffix = ".customers"
+            versionNameSuffix = "-customers"
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
