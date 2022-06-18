@@ -5,12 +5,12 @@ import com.example.composegrocceryapp.model.Customer
 
 @Dao
 interface CustomerDao {
-//    @Query("SELECT * FROM customer_tbl WHERE email=:email")
-//    suspend fun getUser(email: String)
+    @Query("SELECT * FROM customer_tbl WHERE email=:email")
+    suspend fun getCustomer(email: String): Customer
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(customer: Customer)
+    suspend fun insertCustomer(customer: Customer)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateUser(customer: Customer)

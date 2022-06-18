@@ -2,12 +2,14 @@ package com.example.composegrocceryapp.network
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class AuthAPI @Inject constructor(private val auth: FirebaseAuth) {
+class AuthAPI @Inject constructor() {
 
-//    private val auth : FirebaseAuth = Firebase.auth
+    private val auth : FirebaseAuth = Firebase.auth
 
     suspend fun signUpWithEmailPassword(email : String, password : String) : Any? {
         val res: Any? = try {
