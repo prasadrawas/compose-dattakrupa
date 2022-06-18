@@ -35,12 +35,15 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composegrocceryapp.R
+import com.example.composegrocceryapp.constants.BLANK_NAME
+import com.example.composegrocceryapp.constants.BLANK_VALUE
 
 @ExperimentalComposeUiApi
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,
     state: MutableState<String> = mutableStateOf(""),
+    errorMsg: MutableState<String> = mutableStateOf(""),
     placeholder: String,
     leadingIcon: ImageVector,
     obscureText: Boolean = false,
@@ -67,7 +70,12 @@ fun InputField(
             shape = RoundedCornerShape(8.dp),
             value = state.value,
             onValueChange = { state.value = it.trim() },
-            label = { Text(text = placeholder, fontFamily = FontFamily(Font(R.font.poppins_regular))) },
+            label = {
+                Text(
+                    text = placeholder,
+                    fontFamily = FontFamily(Font(R.font.poppins_regular))
+                )
+            },
             visualTransformation = if (isPasswordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
             leadingIcon = { Icon(imageVector = leadingIcon, contentDescription = null) },
             trailingIcon = {
@@ -86,19 +94,20 @@ fun InputField(
             enabled = enabled,
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
             keyboardActions = KeyboardActions {
-                if (validator(state.value))return@KeyboardActions
+                if (!validator(state.value.trim())) return@KeyboardActions
                 controller?.hide()
             },
-            isError = !isValid.value
+            isError = errorMsg.value.isNotEmpty()
         )
 
-        if(!isValid.value){
-            Text(text = "Invalid", style = TextStyle(
-                fontFamily = FontFamily(Font(R.font.poppins_light)),
-                fontWeight = FontWeight.Light   ,
-                fontSize = 12.sp,
-                color = Color.Red
-            )
+        if (errorMsg.value.isNotEmpty()) {
+            Text(
+                text = errorMsg.value, style = TextStyle(
+                    fontFamily = FontFamily(Font(R.font.poppins_extra_light)),
+                    fontWeight = FontWeight.ExtraLight,
+                    fontSize = 12.sp,
+                    color = Color.Red
+                )
             )
         }
     }

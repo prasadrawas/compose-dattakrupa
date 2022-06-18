@@ -45,7 +45,7 @@ fun SplashScreen(navigator: NavController? = null) {
                 }
             )
         )
-        delay(1500L)
+        delay(1000L)
         navigator?.navigate(AppScreens.SignIn.name)
     })
 

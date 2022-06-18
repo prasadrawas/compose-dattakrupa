@@ -1,0 +1,15 @@
+package com.example.composegrocceryapp.constants
+
+const val BLANK_VALUE = ""
+const val REQUIRED = "required"
+const val INVALID_EMAIL = "Invalid email address"
+const val BLANK_EMAIL = "Please enter email address"
+const val INVALID_PHONE = "Invalid phone number"
+const val BLANK_PHONE = "Please enter phone number"
+const val WEAK_PASSWORD = "Password is too weak"
+const val BLANK_PASSWORD = "Please enter password"
+const val INVALID_PIN = "Invalid pin"
+const val BLANK_PIN = "Please enter pin"
+const val BLANK_NAME = "Please enter name"
+const val BLANK_CITY = "Please enter city"
+const val BLANK_LANDMARK = "Please enter landmark"

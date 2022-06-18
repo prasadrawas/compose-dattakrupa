@@ -30,10 +30,8 @@ fun ReactiveButton(
 ) {
     val btnWidth = (LocalConfiguration.current.screenWidthDp.toFloat()*width).toInt()
     Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center
     ) {
         Button(
             onClick = onClick,
@@ -41,21 +39,16 @@ fun ReactiveButton(
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = backgroundColor,
-            )
+            ),
+            enabled = !isLoading.value
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-
-                ) {
-                if (isLoading.value) {
-                    CircularProgressIndicator(
-                        color = foregroundColor,
-                        modifier = Modifier.size(20.dp),
-                        strokeWidth = 2.dp
-                    )
-                }
-                if (isLoading.value) Width(width = 5)
+            if (isLoading.value) {
+                CircularProgressIndicator(
+                    color = foregroundColor,
+                    modifier = Modifier.size(20.dp),
+                    strokeWidth = 2.dp
+                )
+            }else {
                 Text(
                     text = title,
                     fontFamily = FontFamily(Font(R.font.poppins_regular)),
