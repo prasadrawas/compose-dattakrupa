@@ -22,7 +22,7 @@ class ResetPasswordViewModel @Inject constructor(private val repository: AppRepo
     val isLoading = mutableStateOf(false)
 
     private fun isFormValid(): Boolean{
-        if(!validateInput(email.value, emailErrorMsg, INVALID_EMAIL, ::isValidEmail)) return false
+        if(!validateInput(email.value.trim(), emailErrorMsg, INVALID_EMAIL, ::isValidEmail)) return false
         return true
     }
 
@@ -30,7 +30,7 @@ class ResetPasswordViewModel @Inject constructor(private val repository: AppRepo
         if(isFormValid()){
             isLoading.value = true
             viewModelScope.launch {
-                val res = repository.sendPasswordResetLink(email = email.value)
+                val res = repository.sendPasswordResetLink(email = email.value.trim())
                 isLoading.value = false
 
                 if(res is Boolean){

@@ -35,6 +35,7 @@ import com.example.composegrocceryapp.ui.screens.product.ProductListerScreen
 import com.example.composegrocceryapp.ui.screens.product.ProductsListerViewModel
 import com.example.composegrocceryapp.ui.screens.profile.*
 import com.example.composegrocceryapp.ui.screens.splash.SplashScreen
+import com.example.composegrocceryapp.ui.screens.splash.SplashViewModel
 
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
@@ -44,7 +45,8 @@ fun AppNavigation(){
     NavHost(navController = navigator, startDestination = AppScreens.Splash.name){
 
         composable(AppScreens.Splash.name){
-            SplashScreen(navigator = navigator)
+            val viewModel = hiltViewModel<SplashViewModel>()
+            SplashScreen(navigator = navigator, viewModel = viewModel)
         }
 
         composable(AppScreens.SignIn.name){

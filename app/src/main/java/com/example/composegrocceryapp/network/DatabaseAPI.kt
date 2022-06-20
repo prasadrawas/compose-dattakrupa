@@ -1,8 +1,7 @@
 package com.example.composegrocceryapp.network
 
-import com.example.composegrocceryapp.constants.USERS
+import com.example.composegrocceryapp.constants.CUSTOMERS
 import com.example.composegrocceryapp.model.Customer
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -15,7 +14,7 @@ class DatabaseAPI @Inject constructor(){
     suspend fun storeUserData(customer: Customer) : Any {
         val res : Any
         res = try {
-            val ref = db.collection(USERS).add(customer).await()
+            val ref = db.collection(CUSTOMERS).add(customer).await()
             ref.id
         }catch (e : Exception){
             e
@@ -25,7 +24,7 @@ class DatabaseAPI @Inject constructor(){
 
     suspend fun getUserData(email: String) : Any? {
         val res = try {
-            val ref = db.collection(USERS).whereEqualTo("email", email).get().await()
+            val ref = db.collection(CUSTOMERS).whereEqualTo("email", email).get().await()
             if (ref == null || ref.isEmpty) {
                 null
             } else {

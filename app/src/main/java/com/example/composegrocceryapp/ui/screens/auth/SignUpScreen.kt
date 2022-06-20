@@ -40,8 +40,7 @@ fun SignUpScreen(
 ) {
     val context = LocalContext.current;
     if(viewModel.status.value==true){
-        context.showToast("SignUp Success")
-//        navigator.navigate(AppScreens.ResetSuccess.name)
+        navigator.navigate(AppScreens.Home.name)
     }else if(viewModel.status.value is Exception){
         context.showToast((viewModel.status.value as Exception).message.toString())
     }

@@ -43,7 +43,7 @@ fun SignInScreen(
 ) {
     val context = LocalContext.current;
     if(viewModel.status.value == true){
-        context.showToast("SignIn Success")
+        navigator.navigate(AppScreens.Home.name)
     }else if(viewModel.status.value is Exception){
         context.showToast((viewModel.status.value as Exception).message.toString())
     }

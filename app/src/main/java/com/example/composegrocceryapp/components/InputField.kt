@@ -69,7 +69,7 @@ fun InputField(
                 .fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
             value = state.value,
-            onValueChange = { state.value = it.trim() },
+            onValueChange = { state.value = it },
             label = {
                 Text(
                     text = placeholder,

@@ -69,7 +69,7 @@ fun HomeScreen(
                 }
             )
         },
-        drawerContent = { ReactiveDrawer(name = "Prasad Rawas") }
+        drawerContent = { ReactiveDrawer(name = viewModel.name.value) }
     ) {
 
         val scrollState = rememberScrollState()
@@ -79,7 +79,7 @@ fun HomeScreen(
                 .verticalScroll(scrollState)
                 .padding(15.dp)
         ) {
-            ScreenTitle(title = "Hello Prasad !")
+            ScreenTitle(title = "Hello ${viewModel.name.value.split(" ")[0]} !")
             InputField(
                 placeholder = stringResource(id = R.string.search_here),
                 leadingIcon = Icons.Rounded.Search, validator = ::isValidText,

@@ -26,8 +26,8 @@ class SignInViewModel @Inject constructor(private val repository: AppRepository)
 
 
     private fun isFormValid(): Boolean{
-        if(!validateInput(email.value, emailErrorMsg, INVALID_EMAIL, ::isValidEmail)) return false
-        if(!validateInput(password.value, passwordErrorMsg, WEAK_PASSWORD, ::isStrongPassword)) return false
+        if(!validateInput(email.value.trim(), emailErrorMsg, INVALID_EMAIL, ::isValidEmail)) return false
+        if(!validateInput(password.value.trim(), passwordErrorMsg, WEAK_PASSWORD, ::isStrongPassword)) return false
         return true
     }
 
@@ -35,17 +35,17 @@ class SignInViewModel @Inject constructor(private val repository: AppRepository)
         if(isFormValid()){
             isLoading.value = true
             viewModelScope.launch {
-                var res = repository.signInWithEmailPassword(email = email.value, password = password.value)
+                var res = repository.signInWithEmailPassword(email = email.value.trim(), password = password.value.trim())
                 if(res is FirebaseUser){
-                     res = repository.getCustomerFromLocal(email = email.value)
-                    if(res!=null){
+                     res = repository.getCustomerFromLocal()
+                    if(res.isNotEmpty()){
                         Log.d("SignIn", "Status : success")
                         isLoading.value = false
                         status.value = true
                     }else{
-                        res = repository.getCustomerFromRemote(email = email.value)
-                        isLoading.value = false
+                        res = repository.getCustomerFromRemote(email = email.value.trim())
                         if(res is Customer){
+                            repository.deleteAllFromLocalDb()
                             repository.storeCustomerToLocalDb(res)
                             Log.d("SignIn", "Status : success")
                             status.value = true

@@ -59,7 +59,7 @@ class AuthAPI @Inject constructor() {
     }
 
 
-    private fun isLoggedIn() : Boolean{
+     fun isLoggedIn() : Boolean{
         try {
             if(auth.currentUser!=null)
                 return true

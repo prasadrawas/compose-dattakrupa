@@ -27,6 +27,10 @@ class AppRepository @Inject constructor(
         return auth.logout()
     }
 
+    fun isLoggedIn() : Boolean {
+        return auth.isLoggedIn()
+    }
+
     suspend fun changeEmail(email: String, newEmail: String, password: String): Any {
         return auth.changeEmail(email, newEmail, password)
     }
@@ -48,8 +52,8 @@ class AppRepository @Inject constructor(
         return fireDb.getUserData(email)
     }
 
-    suspend fun getCustomerFromLocal(email: String): Customer? {
-        return customerDao.getCustomerFromLocal(email = email)
+    suspend fun getCustomerFromLocal(): List<Customer> {
+        return customerDao.getCustomerFromLocal()
     }
 
     suspend fun deleteAllFromLocalDb(){

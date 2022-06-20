@@ -5,8 +5,8 @@ import com.example.composegrocceryapp.model.Customer
 
 @Dao
 interface CustomerDao {
-    @Query("SELECT * FROM customer_tbl WHERE email=:email")
-    suspend fun getCustomerFromLocal(email: String): Customer?
+    @Query("SELECT * FROM customer_tbl")
+    suspend fun getCustomerFromLocal(): List<Customer>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCustomer(customer: Customer)
