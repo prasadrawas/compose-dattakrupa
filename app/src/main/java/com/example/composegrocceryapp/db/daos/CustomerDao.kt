@@ -6,8 +6,7 @@ import com.example.composegrocceryapp.model.Customer
 @Dao
 interface CustomerDao {
     @Query("SELECT * FROM customer_tbl WHERE email=:email")
-    suspend fun getCustomer(email: String): Customer
-
+    suspend fun getCustomerFromLocal(email: String): Customer?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCustomer(customer: Customer)
@@ -15,6 +14,8 @@ interface CustomerDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateUser(customer: Customer)
 
-    @Delete
-    suspend fun deleteUser(customer: Customer)
+    @Query("DELETE FROM customer_tbl")
+    suspend fun deleteAllCustomers()
+
+
 }

@@ -9,31 +9,55 @@ class AppRepository @Inject constructor(
     private val auth: AuthAPI,
     private val fireDb: DatabaseAPI,
     private val customerDao: CustomerDao
-    ){
+    ) {
 
-    suspend fun signInWithEmailPassword(email : String, password : String) : Any? {
+    suspend fun signInWithEmailPassword(email: String, password: String): Any? {
         return auth.signInWithEmailPassword(email, password)
     }
 
-    suspend fun signUpWithEmailPassword(email : String, password : String) : Any? {
+    suspend fun signUpWithEmailPassword(email: String, password: String): Any? {
         return auth.signUpWithEmailPassword(email, password)
     }
 
-    suspend fun sendPasswordResetLink(email : String) : Any {
+    suspend fun sendPasswordResetLink(email: String): Any {
         return auth.sendPasswordResetLink(email)
     }
 
-    suspend fun storeCustomerToRemoteDb(customer: Customer) : Any {
+    fun logout(): Any {
+        return auth.logout()
+    }
+
+    suspend fun changeEmail(email: String, newEmail: String, password: String): Any {
+        return auth.changeEmail(email, newEmail, password)
+    }
+
+    suspend fun changePassword(email: String, password: String, newPassword: String): Any {
+        return auth.changeEmail(email, password, newPassword)
+    }
+
+
+    suspend fun storeCustomerToRemoteDb(customer: Customer): Any {
         return fireDb.storeUserData(customer)
     }
 
-    suspend fun storeCustomerToLocalDb(customer: Customer) : Any {
+    suspend fun storeCustomerToLocalDb(customer: Customer): Any {
         return customerDao.insertCustomer(customer)
     }
 
+    suspend fun getCustomerFromRemote(email: String): Any? {
+        return fireDb.getUserData(email)
+    }
+
+    suspend fun getCustomerFromLocal(email: String): Customer? {
+        return customerDao.getCustomerFromLocal(email = email)
+    }
+
+    suspend fun deleteAllFromLocalDb(){
+        return customerDao.deleteAllCustomers()
+    }
 
 
-    /*suspend fun getCategories() : Any {
+        /*suspend fun getCategories() : Any {
         return db.getCategories()
     }
 
@@ -52,24 +76,10 @@ class AppRepository @Inject constructor(
     fun isLoggedIn() : Boolean {
         return auth.isLoggedIn()
     }
-
-    suspend fun getUserData(email: String) : Any? {
-        return db.getUserData(email)
     }*/
 
-    fun logout() : Any{
-        return auth.logout()
-    }
-
-    suspend fun changeEmail(email: String, newEmail: String, password: String) : Any{
-        return auth.changeEmail(email,newEmail,password)
-    }
-
-    suspend fun changePassword(email: String, password: String, newPassword: String) : Any{
-        return auth.changeEmail(email,password,newPassword)
-    }
-
-    /*suspend fun makeOrder(order: OrderModel) : Any{
+        /*suspend fun makeOrder(order: OrderModel) : Any{
         return db.makeOrder(order)
     }*/
+
 }

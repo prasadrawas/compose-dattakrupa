@@ -1,5 +1,6 @@
 package com.example.composegrocceryapp.ui.screens.auth
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -31,6 +33,7 @@ import com.example.composegrocceryapp.navigation.AppScreens
 import com.example.composegrocceryapp.ui.widgets.ScreenTitle
 import com.example.composegrocceryapp.utils.isStrongPassword
 import com.example.composegrocceryapp.utils.isValidEmail
+import com.example.composegrocceryapp.utils.showToast
 
 @ExperimentalComposeUiApi
 @Composable
@@ -38,6 +41,13 @@ fun SignInScreen(
     navigator: NavController,
     viewModel: SignInViewModel
 ) {
+    val context = LocalContext.current;
+    if(viewModel.status.value == true){
+        context.showToast("SignIn Success")
+    }else if(viewModel.status.value is Exception){
+        context.showToast((viewModel.status.value as Exception).message.toString())
+    }
+
     val scrollState = rememberScrollState()
     Surface(
         modifier = Modifier
@@ -68,7 +78,7 @@ fun SignInScreen(
             )
             ForgotPassBox(navigator = navigator)
             ReactiveButton(title = stringResource(id = R.string.sign_in), isLoading = viewModel.isLoading) {
-                viewModel.isFormValid()
+                viewModel.onSignIn()
             }
             SignUpBox(navigator = navigator)
         }
@@ -97,7 +107,9 @@ private fun ForgotPassBox(navigator: NavController) {
 private fun SignUpBox(navigator: NavController) {
     Box(
         contentAlignment = Alignment.BottomCenter,
-        modifier = Modifier.fillMaxWidth().padding(top = 100.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 100.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

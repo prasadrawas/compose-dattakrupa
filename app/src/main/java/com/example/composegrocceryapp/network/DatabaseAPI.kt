@@ -23,14 +23,13 @@ class DatabaseAPI @Inject constructor(){
         return res
     }
 
-
-    /*suspend fun getUserData(email: String) : Any? {
+    suspend fun getUserData(email: String) : Any? {
         val res = try {
-            val ref = db.collection(FirebaseConstants.USERS).whereEqualTo("email", email).get().await()
+            val ref = db.collection(USERS).whereEqualTo("email", email).get().await()
             if (ref == null || ref.isEmpty) {
                 null
             } else {
-                val user = ref.documents[0].toObject(UserModel::class.java)
+                val user = ref.documents[0].toObject(Customer::class.java)
                 user?.id = ref.documents[0].id
                 user
             }
@@ -39,6 +38,8 @@ class DatabaseAPI @Inject constructor(){
         }
         return res
     }
+
+    /*
 
     suspend fun getCategories() : Any {
         var res: Any

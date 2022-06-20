@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -27,6 +28,7 @@ import com.example.composegrocceryapp.components.ReactiveButton
 import com.example.composegrocceryapp.navigation.AppScreens
 import com.example.composegrocceryapp.ui.widgets.ScreenTitle
 import com.example.composegrocceryapp.utils.isValidEmail
+import com.example.composegrocceryapp.utils.showToast
 
 @ExperimentalComposeUiApi
 //@Preview
@@ -35,6 +37,14 @@ fun ResetPasswordScreen(
     navigator: NavController,
     viewModel: ResetPasswordViewModel
 ) {
+
+    val context = LocalContext.current;
+    if(viewModel.status.value==true){
+        navigator.navigate(AppScreens.ResetSuccess.name)
+    }else if(viewModel.status.value is Exception){
+        context.showToast((viewModel.status.value as Exception).message.toString())
+    }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -59,11 +69,11 @@ fun ResetPasswordScreen(
                 leadingIcon = Icons.Default.Email,
                 keyboardType = KeyboardType.Email,
                 validator = ::isValidEmail,
-                isValid = viewModel.isValid
+                errorMsg = viewModel.emailErrorMsg
             )
             Height(height = 20)
-            ReactiveButton(title = stringResource(id = R.string.send_link)) {
-                navigator.navigate(AppScreens.ResetSuccess.name)
+            ReactiveButton(title = stringResource(id = R.string.send_link), isLoading = viewModel.isLoading) {
+                viewModel.onReset()
             }
         }
     }

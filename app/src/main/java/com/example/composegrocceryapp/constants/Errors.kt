@@ -2,6 +2,7 @@ package com.example.composegrocceryapp.constants
 
 const val BLANK_VALUE = ""
 const val REQUIRED = "required"
+const val INVALID_TEXT = "Invalid value"
 const val INVALID_EMAIL = "Invalid email address"
 const val BLANK_EMAIL = "Please enter email address"
 const val INVALID_PHONE = "Invalid phone number"

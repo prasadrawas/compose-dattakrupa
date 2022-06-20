@@ -9,6 +9,7 @@ data class Customer (
     @PrimaryKey
     @NonNull
     var email: String = "",
+    var id: String? = null,
     var name: String? = null,
     var phone: String? = null,
     var city: String? = null,
