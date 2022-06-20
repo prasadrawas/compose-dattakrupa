@@ -76,7 +76,7 @@ fun AddressScreen(
 
 
             InputField(
-                state = viewModel.fullAddress,
+                state = viewModel.landmark,
                 placeholder = "Enter full address",
                 leadingIcon = Icons.Rounded.MyLocation,
                 validator = ::isValidText)

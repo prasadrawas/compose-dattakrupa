@@ -3,12 +3,9 @@ package com.example.composegrocceryapp.ui.widgets
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.runtime.Composable
@@ -31,8 +28,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.Height
-import com.example.composegrocceryapp.components.Width
-import com.example.composegrocceryapp.data.productList
+import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.model.Product
 import com.example.composegrocceryapp.ui.theme.Green200
 

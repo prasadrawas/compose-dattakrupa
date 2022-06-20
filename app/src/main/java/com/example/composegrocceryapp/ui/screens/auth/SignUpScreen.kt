@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -29,18 +30,22 @@ import com.example.composegrocceryapp.components.InputField
 import com.example.composegrocceryapp.components.ReactiveButton
 import com.example.composegrocceryapp.navigation.AppScreens
 import com.example.composegrocceryapp.ui.widgets.ScreenTitle
-import com.example.composegrocceryapp.utils.isStrongPassword
-import com.example.composegrocceryapp.utils.isValidEmail
-import com.example.composegrocceryapp.utils.isValidPhone
-import com.example.composegrocceryapp.utils.isValidText
+import com.example.composegrocceryapp.utils.*
 
 @ExperimentalComposeUiApi
-//@Preview
 @Composable
 fun SignUpScreen(
     navigator: NavController,
     viewModel: SignUpViewModel
 ) {
+    val context = LocalContext.current;
+    if(viewModel.status.value==true){
+        context.showToast("SignUp Success")
+//        navigator.navigate(AppScreens.ResetSuccess.name)
+    }else if(viewModel.status.value is Exception){
+        context.showToast((viewModel.status.value as Exception).message.toString())
+    }
+
     val scrollState = rememberScrollState()
     Surface(
         modifier = Modifier
@@ -57,7 +62,7 @@ fun SignUpScreen(
                 placeholder = "Enter name",
                 leadingIcon = Icons.Default.Person,
                 validator = ::isValidText,
-                isValid = viewModel.isValid
+                errorMsg = viewModel.nameErrorMsg
             )
 
             InputField(
@@ -66,7 +71,7 @@ fun SignUpScreen(
                 leadingIcon = Icons.Default.Email,
                 keyboardType = KeyboardType.Email,
                 validator = ::isValidEmail,
-                isValid = viewModel.isValid
+                errorMsg = viewModel.emailErrorMsg
             )
 
             InputField(
@@ -75,7 +80,7 @@ fun SignUpScreen(
                 leadingIcon = Icons.Default.Phone,
                 keyboardType = KeyboardType.Email,
                 validator = ::isValidPhone,
-                isValid = viewModel.isValid
+                errorMsg = viewModel.phoneErrorMsg
             )
 
 
@@ -84,12 +89,12 @@ fun SignUpScreen(
                 placeholder = "Enter password",
                 leadingIcon = Icons.Default.Lock,
                 validator = ::isStrongPassword,
-                isValid = viewModel.isValid,
+                errorMsg = viewModel.passwordErrorMsg,
                 obscureText = true
             )
             Height(height = 20)
-            ReactiveButton(title = stringResource(id = R.string.sign_up)) {
-
+            ReactiveButton(title = stringResource(id = R.string.sign_up), isLoading = viewModel.isLoading) {
+                viewModel.onSignUp()
             }
             SignInBox(navigator = navigator)
         }

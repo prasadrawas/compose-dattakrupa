@@ -23,7 +23,7 @@ import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.ReactiveAppbar
 import com.example.composegrocceryapp.components.ReactiveButton
 import com.example.composegrocceryapp.components.Width
-import com.example.composegrocceryapp.data.productList
+import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.model.Product
 import com.example.composegrocceryapp.ui.widgets.QuantityButton
 
