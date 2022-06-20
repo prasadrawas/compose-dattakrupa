@@ -29,7 +29,7 @@ import com.example.composegrocceryapp.navigation.AppScreens
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navigator: NavController? = null) {
+fun SplashScreen(navigator: NavController, viewModel: SplashViewModel) {
     val scale = remember {
         Animatable(0f)
     }
@@ -46,7 +46,10 @@ fun SplashScreen(navigator: NavController? = null) {
             )
         )
         delay(1000L)
-        navigator?.navigate(AppScreens.SignIn.name)
+        if(viewModel.isLoggedIn.value)
+            navigator.navigate(AppScreens.Home.name)
+        else
+            navigator.navigate(AppScreens.SignIn.name)
     })
 
 
