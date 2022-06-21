@@ -4,9 +4,11 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.composegrocceryapp.ui.screens.admin.inventory.category.InventoryCategoryDetailsScreen
 import com.example.composegrocceryapp.ui.screens.admin.inventory.category.InventoryCategoryDetailsViewModel
 import com.example.composegrocceryapp.ui.screens.admin.inventory.category.InventoryCategoryScreen
@@ -73,9 +75,14 @@ fun AppNavigation(){
             HomeScreen(navigator = navigator, viewModel = viewModel)
         }
 
-        composable(AppScreens.ProductDetails.name){
+        composable(AppScreens.ProductDetails.name+"/{id}", arguments = listOf(
+            navArgument(name = "id"){
+                type = NavType.StringType
+            }
+        )){
             val viewModel = hiltViewModel<ProductDetailsViewModel>()
-            ProductDetailsScreen(navigator = navigator, viewModel = viewModel)
+            val id = it.arguments?.getString("id") ?: ""
+            ProductDetailsScreen(id = id, navigator = navigator, viewModel = viewModel)
         }
 
         composable(AppScreens.Cart.name){
@@ -153,9 +160,14 @@ fun AppNavigation(){
             InventoryCategoryDetailsScreen(navigator = navigator, viewModel = viewModel)
         }
 
-        composable(AppScreens.ProductsLister.name){
+        composable(AppScreens.ProductsLister.name+"/{category}", arguments = listOf(
+            navArgument(name = "category"){
+                type = NavType.StringType
+            }
+        )){
             val viewModel = hiltViewModel<ProductsListerViewModel>()
-            ProductListerScreen(navigator = navigator, viewModel = viewModel)
+            val category = it.arguments?.getString("category") ?: ""
+            ProductListerScreen(category = category, navigator = navigator, viewModel = viewModel)
         }
     }
 }
