@@ -95,9 +95,14 @@ fun AppNavigation(){
             AddressScreen(navigator = navigator, viewModel = viewModel)
         }
 
-        composable(AppScreens.Checkout.name){
+        composable(AppScreens.Checkout.name+"/{id}", arguments = listOf(
+            navArgument(name = "id"){
+                type = NavType.StringType
+            }
+        )){
             val viewModel = hiltViewModel<CheckoutViewModel>()
-            CheckoutScreen(navigator = navigator, viewModel = viewModel)
+            val id = it.arguments?.getString("id") ?: ""
+            CheckoutScreen(id = id, navigator = navigator, viewModel = viewModel)
         }
 
         composable(AppScreens.OrderSuccess.name){
@@ -158,6 +163,11 @@ fun AppNavigation(){
         composable(AppScreens.InventoryCategoryDetails.name){
             val viewModel = hiltViewModel<InventoryCategoryDetailsViewModel>()
             InventoryCategoryDetailsScreen(navigator = navigator, viewModel = viewModel)
+        }
+
+        composable(AppScreens.SelectAddress.name){
+            val viewModel = hiltViewModel<SelectAddressViewModel>()
+            SelectAddressScreen(navigator = navigator, viewModel = viewModel)
         }
 
         composable(AppScreens.ProductsLister.name+"/{category}", arguments = listOf(

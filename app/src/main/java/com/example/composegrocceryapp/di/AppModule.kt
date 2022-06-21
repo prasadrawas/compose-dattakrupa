@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.composegrocceryapp.db.AppDatabase
 import com.example.composegrocceryapp.db.daos.CartDao
 import com.example.composegrocceryapp.db.daos.CustomerDao
+import com.example.composegrocceryapp.db.daos.CustomerDetailsDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,6 +29,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideCartDao(database: AppDatabase): CartDao = database.CartDao()
+
+    @Singleton
+    @Provides
+    fun provideCustomerDetailsDao(database: AppDatabase): CustomerDetailsDao = database.CustomerDetailsDao()
 
     @Singleton
     @Provides

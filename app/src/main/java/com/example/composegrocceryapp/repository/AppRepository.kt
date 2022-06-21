@@ -1,7 +1,9 @@
 package com.example.composegrocceryapp.repository
 import com.example.composegrocceryapp.db.daos.CartDao
 import com.example.composegrocceryapp.db.daos.CustomerDao
+import com.example.composegrocceryapp.db.daos.CustomerDetailsDao
 import com.example.composegrocceryapp.model.Customer
+import com.example.composegrocceryapp.model.CustomerDetails
 import com.example.composegrocceryapp.model.Product
 import com.example.composegrocceryapp.network.AuthAPI
 import com.example.composegrocceryapp.network.DatabaseAPI
@@ -15,7 +17,8 @@ class AppRepository @Inject constructor(
     private val auth: AuthAPI,
     private val fireDb: DatabaseAPI,
     private val customerDao: CustomerDao,
-    private val cartDao: CartDao
+    private val cartDao: CartDao,
+    private val customerDetailsDao: CustomerDetailsDao
     ) {
 
     suspend fun signInWithEmailPassword(email: String, password: String): Any? {
@@ -106,6 +109,26 @@ class AppRepository @Inject constructor(
 
     fun getAllCartItemsAsFlow(): Flow<List<Product>> {
         return cartDao.getAllCartItemsAsFlow().flowOn(Dispatchers.IO).conflate()
+    }
+
+    suspend fun insertCustomerDetails(details: CustomerDetails) {
+        return customerDetailsDao.insertCustomerDetails(details = details)
+    }
+
+    suspend fun deleteCustomerDetails(details: CustomerDetails) {
+        return customerDetailsDao.deleteCustomerDetails(details = details)
+    }
+
+    suspend fun updateCustomerDetails(details: CustomerDetails) {
+        return customerDetailsDao.updateCustomerDetails(details = details)
+    }
+
+    suspend fun getCustomerDetails(id: String): CustomerDetails? {
+        return customerDetailsDao.getCustomerDetails(id)
+    }
+
+    suspend fun getAllCustomerDetailsAsFlow(): Flow<List<CustomerDetails>> {
+        return customerDetailsDao.getAllCustomerDetailsAsFlow().flowOn(Dispatchers.IO).conflate()
     }
 
 }

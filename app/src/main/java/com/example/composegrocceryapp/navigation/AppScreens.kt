@@ -15,6 +15,7 @@ enum class AppScreens {
     OrderDetails,
     Profile,
     Address,
+    SelectAddress,
     Checkout,
     OrderSuccess,
     ChangeEmail,
