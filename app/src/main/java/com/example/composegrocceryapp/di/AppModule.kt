@@ -3,6 +3,7 @@ package com.example.composegrocceryapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.composegrocceryapp.db.AppDatabase
+import com.example.composegrocceryapp.db.daos.CartDao
 import com.example.composegrocceryapp.db.daos.CustomerDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -18,18 +19,15 @@ import javax.inject.Singleton
 @Module
 object AppModule {
 
-    @Singleton
-    @Provides
-    fun provideFirebaseApi() = Firebase.auth
-
-
-    @Singleton
-    @Provides
-    fun provideFirebaseFirestore() = Firebase.firestore
 
     @Singleton
     @Provides
     fun provideCustomerDao(database: AppDatabase): CustomerDao = database.CustomerDao()
+
+
+    @Singleton
+    @Provides
+    fun provideCartDao(database: AppDatabase): CartDao = database.CartDao()
 
     @Singleton
     @Provides

@@ -16,46 +16,52 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.Height
 import com.example.composegrocceryapp.db.categoryList
 import com.example.composegrocceryapp.model.Category
+import com.example.composegrocceryapp.navigation.AppScreens
 
 @Composable
-fun CategoryCard(category: Category = categoryList[0]) {
+fun CategoryCard(navigator: NavController, category: Category = categoryList[0]) {
 
-        Column(
-            modifier = Modifier.width(110.dp).padding(end = 14.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+    Column(
+        modifier = Modifier
+            .width(110.dp)
+            .padding(end = 14.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Card(
+            modifier = Modifier
+                .clickable {
+                    navigator.navigate(AppScreens.ProductsLister.name + "/${category.name}")
+                },
+            shape = CircleShape
         ) {
-
-            Card(
-                modifier = Modifier
-                    .clickable { },
-                shape = CircleShape
-            ){
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier.padding(3.dp)
-                ) {
-                    Image(
-                        painter = rememberAsyncImagePainter(category.image),
-                        contentDescription = null,
-                        modifier = Modifier.size(90.dp)
-                    )
-                }
-            }
-            Height(height = 8)
-            Text(
-                text = category.name!!,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = TextStyle(
-                    fontFamily = FontFamily(Font(R.font.poppins_regular)),
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.Light,
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.padding(3.dp)
+            ) {
+                Image(
+                    painter = rememberAsyncImagePainter(category.image),
+                    contentDescription = null,
+                    modifier = Modifier.size(90.dp)
                 )
-            )
+            }
         }
+        Height(height = 8)
+        Text(
+            text = category.name!!,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.poppins_regular)),
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Light,
+            )
+        )
+    }
 }

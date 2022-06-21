@@ -1,7 +1,14 @@
 package com.example.composegrocceryapp.model
 
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "cart_tbl")
 data class Product(
-    var id: String? = null,
+    @PrimaryKey
+    @NonNull
+    var id: String = "",
     val name: String? = null,
     val category: String? = null,
     val image: String? = null,

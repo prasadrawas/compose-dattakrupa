@@ -12,7 +12,7 @@ interface CustomerDao {
     suspend fun insertCustomer(customer: Customer)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateUser(customer: Customer)
+    suspend fun updateCustomer(customer: Customer)
 
     @Query("DELETE FROM customer_tbl")
     suspend fun deleteAllCustomers()

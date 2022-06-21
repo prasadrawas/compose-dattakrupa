@@ -25,18 +25,32 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.composegrocceryapp.R
 import com.example.composegrocceryapp.components.Height
 import com.example.composegrocceryapp.db.productList
 import com.example.composegrocceryapp.model.Product
+import com.example.composegrocceryapp.navigation.AppScreens
+import com.example.composegrocceryapp.ui.screens.home.HomeViewModel
+import com.example.composegrocceryapp.ui.screens.product.ProductsListerViewModel
 import com.example.composegrocceryapp.ui.theme.Green200
 
 @Composable
-fun ProductCard(modifier: Modifier, product: Product = productList[0]) {
+fun ProductCard(
+    modifier: Modifier = Modifier,
+    navigator: NavController,
+    viewModel: ViewModel,
+    product: Product = productList[0]
+) {
     Card(
         modifier = modifier
-            .clickable { },
+            .width(160.dp)
+            .height(190.dp)
+            .clickable {
+                navigator.navigate(AppScreens.ProductDetails.name + "/${product.id}")
+            },
         shape = RoundedCornerShape(10.dp)
     ) {
         val isFav = rememberSaveable {
@@ -45,12 +59,12 @@ fun ProductCard(modifier: Modifier, product: Product = productList[0]) {
 
         FavouriteButton(isFav)
         MainContent(product)
-        AddButton()
+        AddButton(product = product, viewModel = viewModel)
     }
 }
 
 @Composable
-private fun AddButton() {
+private fun AddButton(product: Product, viewModel: ViewModel) {
     Box(
         contentAlignment = Alignment.BottomEnd
     ) {
@@ -59,7 +73,13 @@ private fun AddButton() {
             contentColor = Color.White,
             modifier = Modifier
                 .size(35.dp)
-                .clickable { }
+                .clickable {
+                    if(viewModel is HomeViewModel){
+                        viewModel.addToCart(product = product)
+                    }else if(viewModel is ProductsListerViewModel){
+                        viewModel.addToCart(product = product)
+                    }
+                }
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Text(
@@ -77,10 +97,14 @@ private fun AddButton() {
 @Composable
 private fun MainContent(product: Product) {
     Column(
-        modifier = Modifier.padding(start = 12.dp, top = 12.dp, end = 12.dp).fillMaxWidth()
+        modifier = Modifier
+            .padding(start = 12.dp, top = 12.dp, end = 12.dp)
+            .fillMaxWidth()
     ) {
         Box(
-            modifier = Modifier.padding(10.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -97,8 +121,7 @@ private fun MainContent(product: Product) {
             style = TextStyle(
                 fontFamily = FontFamily(Font(R.font.poppins_bold)),
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp,
+                fontWeight = FontWeight.Bold
             )
         )
         Text(
@@ -112,27 +135,31 @@ private fun MainContent(product: Product) {
             )
         )
         Height(height = 8)
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+        Box(
+            contentAlignment = Alignment.BottomStart
         ) {
-            Text(
-                text = "$ ${product.price}",
-                modifier = Modifier.padding(end = 5.dp),
-                style = TextStyle(
-                    fontFamily = FontFamily(Font(R.font.poppins_bold)),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "$ ${product.price}",
+                    modifier = Modifier.padding(end = 5.dp),
+                    style = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.poppins_bold)),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
                 )
-            )
-            Text(
-                text = "$ ${product.price!! + 2}", style = TextStyle(
-                    fontFamily = FontFamily(Font(R.font.poppins_light)),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Light,
-                    textDecoration = TextDecoration.LineThrough
+                Text(
+                    text = "$ ${product.price!! + 2}", style = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.poppins_light)),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Light,
+                        textDecoration = TextDecoration.LineThrough
+                    )
                 )
-            )
+            }
         }
     }
 }

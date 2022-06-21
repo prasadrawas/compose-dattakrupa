@@ -73,6 +73,10 @@ dependencies {
 
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-rc02"
+    // LiveData
+    /*implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0-rc02"
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.0-rc02"*/
 
     //Dagger-Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

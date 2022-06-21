@@ -56,7 +56,7 @@ fun BillSection() {
 @Composable
 fun CartItems() {
     productList.subList(0, 2).forEach {
-        CartCard(it = it)
+//        CartCard(product = it)
     }
 }
 
