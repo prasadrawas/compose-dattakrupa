@@ -11,7 +11,6 @@ import androidx.navigation.NavController
 import com.example.composegrocceryapp.components.ReactiveAppbar
 import com.example.composegrocceryapp.components.ReactiveButton
 import com.example.composegrocceryapp.db.productList
-import com.example.composegrocceryapp.ui.screens.cart.CartCard
 import com.example.composegrocceryapp.ui.theme.Green200
 import com.example.composegrocceryapp.ui.widgets.BoldText
 import com.example.composegrocceryapp.ui.widgets.CustomDetailsSection
@@ -20,7 +19,8 @@ import com.example.composegrocceryapp.ui.widgets.ScreenTitle
 @Composable
 fun CheckoutScreen(
     navigator: NavController,
-    viewModel: CheckoutViewModel
+    viewModel: CheckoutViewModel,
+    id: String
 ) {
     Scaffold(topBar = { ReactiveAppbar(navigator = navigator) }) {
         LazyColumn {

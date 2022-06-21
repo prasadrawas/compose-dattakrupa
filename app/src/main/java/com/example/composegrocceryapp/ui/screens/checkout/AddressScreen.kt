@@ -29,28 +29,34 @@ import com.example.composegrocceryapp.utils.isValidText
 fun AddressScreen(
     navigator: NavController,
     viewModel: AddressViewModel
-){
+) {
     val scrollState = rememberScrollState()
     Scaffold(
         topBar = { ReactiveAppbar(navigator = navigator) }
     ) {
         Column(
-            modifier = Modifier.padding(top = 15.dp, start = 15.dp, end = 15.dp).verticalScroll(scrollState)
-        ){
+            modifier = Modifier
+                .padding(top = 15.dp, start = 15.dp, end = 15.dp)
+                .verticalScroll(scrollState)
+        ) {
             ScreenTitle(title = stringResource(id = R.string.your_address))
             Height(height = 20)
             InputField(
                 state = viewModel.name,
                 placeholder = "Enter name",
                 leadingIcon = Icons.Rounded.Person,
-                validator = ::isValidText)
+                errorMsg = viewModel.nameErrorMsg,
+                validator = ::isValidText
+            )
 
             InputField(
                 state = viewModel.email,
                 placeholder = "Enter email",
                 leadingIcon = Icons.Rounded.Email,
                 keyboardType = KeyboardType.Email,
-                validator = ::isValidEmail)
+                errorMsg = viewModel.emailErrorMsg,
+                validator = ::isValidEmail
+            )
 
 
             InputField(
@@ -58,33 +64,41 @@ fun AddressScreen(
                 placeholder = "Enter email",
                 leadingIcon = Icons.Rounded.Phone,
                 keyboardType = KeyboardType.Number,
-                validator = ::isValidPhone)
+                errorMsg = viewModel.phoneErrorMsg,
+                validator = ::isValidPhone
+            )
 
 
             InputField(
                 state = viewModel.city,
                 placeholder = "Enter city",
                 leadingIcon = Icons.Rounded.LocationCity,
-                validator = ::isValidText)
+                errorMsg = viewModel.cityErrorMsg,
+                validator = ::isValidText
+            )
 
 
             InputField(
                 state = viewModel.pinCode,
                 placeholder = "Enter pin",
                 leadingIcon = Icons.Rounded.Pin,
-                validator = ::isValidText)
+                errorMsg = viewModel.pinCodeErrorMsg,
+                validator = ::isValidText
+            )
 
 
             InputField(
                 state = viewModel.landmark,
-                placeholder = "Enter full address",
+                placeholder = "Enter landmark",
                 leadingIcon = Icons.Rounded.MyLocation,
-                validator = ::isValidText)
+                errorMsg = viewModel.landmarkErrorMsg,
+                validator = ::isValidText
+            )
 
             Height(height = 25)
 
-            ReactiveButton(title = "Checkout") {
-
+            ReactiveButton(title = "Save address") {
+                viewModel.onSaveAddress(navigator)
             }
         }
     }

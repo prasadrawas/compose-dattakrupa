@@ -27,6 +27,7 @@ import com.example.composegrocceryapp.components.ReactiveAppbar
 import com.example.composegrocceryapp.components.ReactiveButton
 import com.example.composegrocceryapp.components.Width
 import com.example.composegrocceryapp.model.Product
+import com.example.composegrocceryapp.navigation.AppScreens
 import com.example.composegrocceryapp.ui.widgets.QuantityButton
 import com.example.composegrocceryapp.utils.LifecycleHandler
 
@@ -48,7 +49,7 @@ fun CartScreen(
         val cartList = viewModel.cartList.collectAsState().value
         MainContent(cartList, viewModel)
 
-        BottomCheckoutButton(size = cartList.size)
+        BottomCheckoutButton(size = cartList.size, navigator = navigator)
     }
 }
 
@@ -83,7 +84,7 @@ private fun MainContent(
 }
 
 @Composable
-private fun BottomCheckoutButton(size: Int) {
+private fun BottomCheckoutButton(size: Int, navigator: NavController) {
     if (size > 0) {
         Box(
             modifier = Modifier
@@ -92,7 +93,7 @@ private fun BottomCheckoutButton(size: Int) {
             contentAlignment = Alignment.BottomCenter
         ) {
             ReactiveButton(title = "Checkout", width = 0.95f) {
-
+                navigator.navigate(AppScreens.SelectAddress.name)
             }
         }
     }
